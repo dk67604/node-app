@@ -32,11 +32,21 @@ var initApi = function(app){
     });
 
     app.get("/getProducts", (req, res) => {
-        res.send(capone.handleCall("GET", null, "/deposits/account-products"));
+        res.setHeader("Content-Type","application/json");
+        capone.handleCall("GET", null, "/deposits/account-products").then(function(result){
+          res.send(JSON.parse(result));
+        }).catch(function(error){
+          res.send({error:"failed"})
+        });
     });
 
     app.post("/postDataFields", formData.array(),(req, res) => {
-        res.send(capone.handleCall("POST", req.body, "/deposits/account-applications"));
+      res.setHeader("Content-Type","application/json");
+        capone.handleCall("POST", req.body, "/deposits/account-applications").then(function(result){
+          res.send(JSON.parse(result));
+        }).catch(function(error){
+          res.send({error:"failed"})
+        });
     });
 }
 

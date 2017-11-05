@@ -8,7 +8,9 @@ var requestHeaders = {
     };
 
 var handleCall = function(method, payload, path) {
-    var options = {
+
+ return new Promise(function(resolve,reject){
+       var options = {
         method: method,
         hostname: "api-sandbox.capitalone.com",
         port: 443,
@@ -16,14 +18,16 @@ var handleCall = function(method, payload, path) {
         headers: requestHeaders
     };
     var returnData = "";
+
+
     var accountApplication = https.request(options, (response)=> {
-	var innerResponse = "";
+	  var innerResponse = "";
         response.on("data", (data) => {
             innerResponse += data;
         });
-	       
-	response.on("end", () => {
-            returnData = innerResponse;
+
+	     response.on("end", () => {
+            resolve(innerResponse);
         });
     });
 
@@ -31,8 +35,10 @@ var handleCall = function(method, payload, path) {
         accountApplication.write(JSON.stringify(payload));
     }
     accountApplication.end();
-    return returnData;
+  });
+
 };
+
 
 module.exports = {
    handleCall: handleCall
