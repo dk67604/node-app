@@ -1,0 +1,21 @@
+{
+  "name": "hacknc-backend",
+  "version": "1.0.0",
+  "description": "Backend for alexa to communicate",
+  "main": "server.js",
+  "scripts": {
+    "nodemon": "./node_modules/nodemon/bin/nodemon.js /home/ubuntu/node-app",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "provectus",
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "express": "^4.16.2",
+    "multer": "^1.3.0",
+    "querystring": "^0.2.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.12.1"
+  }
+}
